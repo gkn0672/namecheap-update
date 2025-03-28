@@ -11,4 +11,4 @@ RUN pip install -e .
 COPY main.py ./
 COPY .env ./
 
-CMD ["python", "main.py"]
+CMD ["python", "-u", "main.py"]

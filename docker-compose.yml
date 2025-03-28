@@ -1,0 +1,8 @@
+
+services:
+  desec-update:
+    build: .
+    restart: always 
+    env_file:
+      - .env
+    command: ["python", "-u", "main.py"]
