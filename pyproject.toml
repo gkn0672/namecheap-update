@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "desec-update"
+version = "0.1.0"
+description = "Dynamically update IP address in deSEC DNS records"
+authors = [{ name = "TVKain", email = "tvkain.it@gmail.com" }]
+license = { text = "MIT" }
+dependencies = [
+    "requests",
+    "dotenv",
+]
+
+[project.scripts]
+ip-checker = "main:main"
