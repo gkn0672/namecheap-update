@@ -1,14 +1,13 @@
 import os
 import time
 import requests
-
+import logging
 from requests.auth import HTTPBasicAuth
 
 DOMAIN_NAME = os.getenv("DOMAIN_NAME")
 TOKEN = os.getenv("TOKEN")
 INTERVAL = int(os.getenv("INTERVAL", 60))  # Default to 60 seconds if not set
 
-import logging
 
 logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(message)s",
