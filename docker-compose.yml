@@ -3,8 +3,6 @@ services:
   desec-update:
     build: .
     restart: always 
-    env_file:
-      - .env
     network_mode: "host"
     container_name: desec-update
     command: ["python", "-u", "main.py"]

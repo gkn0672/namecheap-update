@@ -3,9 +3,6 @@ import time
 import requests
 
 from requests.auth import HTTPBasicAuth
-from dotenv import load_dotenv
-
-load_dotenv()
 
 DOMAIN_NAME = os.getenv("DOMAIN_NAME")
 TOKEN = os.getenv("TOKEN")
@@ -18,22 +15,25 @@ logging.basicConfig(
     level=logging.INFO,
     handlers=[
         logging.StreamHandler(),  # Logs to stdout (for Docker logs)
-    ]
+    ],
 )
 
 logger = logging.getLogger("desec-update")
 
+
 def update_public_ip(domain_name: str, token: str):
     url = "https://update.dedyn.io/"
-    
+
     logger.info(f"Updating IP for {domain_name} with token {token}...")
-     
+
     try:
         response = requests.get(url, auth=HTTPBasicAuth(domain_name, token), timeout=10)
         if response.status_code == 200:
             logger.info(f"IP update successful: {response.text}")
         else:
-            logger.info(f"Failed to update IP: {response.status_code} - {response.text}")
+            logger.info(
+                f"Failed to update IP: {response.status_code} - {response.text}"
+            )
     except requests.RequestException as e:
         logger.info("Error updating IP:", e)
 
@@ -47,9 +47,10 @@ def get_public_ip():
         logger.info(f"Error fetching IP: {e}")
         return None
 
+
 if __name__ == "__main__":
-    last_public_ip = None 
-    
+    last_public_ip = None
+
     logger.info(f"Fetching public IP every {INTERVAL} seconds...")
 
     while True:
@@ -62,4 +63,3 @@ if __name__ == "__main__":
             logger.info(f"Public IP unchanged: {ip}")
         # Wait for the specified interval before checking again
         time.sleep(INTERVAL)
-         

@@ -9,6 +9,5 @@ RUN pip install -e .
 
 # Copy the script and environment variables
 COPY main.py ./
-COPY .env ./
 
 CMD ["python", "-u", "main.py"]
